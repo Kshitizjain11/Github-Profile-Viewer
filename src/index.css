@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+.background{
+    background: linear-gradient(125deg, rgb(11, 19, 50) 0%, rgb(17, 28, 74) 54%, rgb(8, 17, 45) 100%);
+}
+
+.inter-font {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+.inter-font-bold {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+::selection{
+    background-color: #6880DE;
+}
