@@ -3,7 +3,7 @@ import React from 'react'
 
 const Particle = ({children}) => {
   return (
-    <div style={{ width: '100%', height: '1000px', position: 'relative' }}>
+    <div style={{ width: '100%', height: '800px', position: 'relative' }}>
       <Particles
         particleColors={['#ffffff', '#ffffff']}
         particleCount={200}

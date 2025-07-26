@@ -15,13 +15,15 @@ const Stats = () => {
       }
       else if(showForked){
         const result = repoData.filter((elem) => { 
-            return elem.fork
+             if (elem.archived) {return false}
+             else return true
          })
          setFinalRepoData(result)
         }
         else if (showArchieved){
             const result = repoData.filter((elem) => { 
-                return elem.archived
+                if (elem.fork) return false
+                else return true
              })
              setFinalRepoData(result)
         }    
