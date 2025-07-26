@@ -5,8 +5,8 @@ import { useLocation } from 'react-router-dom'
 import Checkbox from '@mui/material/Checkbox'
 const Stats = () => {
     const [finalRepoData, setFinalRepoData] = useState([])
-    const [showForked, setShowForked] = useState(false)
-    const [showArchieved, setShowArchieved] = useState(false)
+    const [showForked, setShowForked] = useState(true)
+    const [showArchieved, setShowArchieved] = useState(true)
     const location = useLocation()
     const {data,repoData} = location.state
     useEffect(() => {
@@ -52,7 +52,7 @@ const Stats = () => {
                 <div className="combine text-[#6C7689] inter-font flex items-center gap-3">
                   <h1 className='text-base md:text-lg font-semibold'>Public Repositories</h1>
                   <div className="px-3 py-0.5 bg-[#F4F4F6] text-black rounded-full flex items-center justify-center text-base font-bold">
-                    <p>{finalRepoData.length}</p>
+                    <p>{ finalRepoData.length }</p>
                   </div>
                 </div>
                 <button className="w-fit px-3 py-1 border rounded-lg bg-gray-50 hover:bg-gray-100 transition text-xs md:text-sm">Sort by : Update</button>
@@ -63,11 +63,11 @@ const Stats = () => {
                   <h5 className="font-semibold text-xs md:text-sm">Include:</h5>
                   <div className='flex items-center gap-2'>
                     <div className="flex gap-1 items-center">
-                      <Checkbox size="small" onClick={() => setShowForked(!showForked)} />
+                      <Checkbox defaultChecked size="small" onClick={() => setShowForked(!showForked)} />
                       <label htmlFor="forked" className="text-xs md:text-sm">Forked</label>
                     </div>
                     <div className="flex gap-1 items-center">
-                      <Checkbox size="small" onClick={() => setShowArchieved(!showArchieved)} />
+                      <Checkbox defaultChecked size="small" onClick={() => setShowArchieved(!showArchieved)} />
                       <label htmlFor="archieved" className="text-xs md:text-sm">Archived</label>
                     </div>
                   </div>
