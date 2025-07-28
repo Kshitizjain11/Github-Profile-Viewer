@@ -3,39 +3,65 @@ import Navbar from './Navbar'
 import Profile from './Profile'
 import { useLocation } from 'react-router-dom'
 import Checkbox from '@mui/material/Checkbox'
+import { getSearched } from '../datafordevs/developers'
 const Stats = () => {
+    const [inputforSearch, setInputforSearch] = useState("")
     const [finalRepoData, setFinalRepoData] = useState([])
     const [showForked, setShowForked] = useState(true)
     const [showArchieved, setShowArchieved] = useState(true)
     const location = useLocation()
     const {data,repoData} = location.state
+    // useEffect(() => {
+    //   if (inputforSearch !== ""){
+    //     let searchedData = getSearched(inputforSearch,repoData)
+    //     setFinalRepoData(searchedData)
+    //   }
+    //   else setFinalRepoData(repoData)
+    
+    // }, [inputforSearch])
+    
     useEffect(() => {
       if (showForked && showArchieved){
-        setFinalRepoData(repoData)
+        if (inputforSearch !== ""){
+        let searchedData = getSearched(inputforSearch,repoData)
+        setFinalRepoData(searchedData)
       }
+        else setFinalRepoData(repoData)
+        }
       else if(showForked){
         const result = repoData.filter((elem) => { 
              if (elem.archived) {return false}
              else return true
          })
-         setFinalRepoData(result)
+         if (inputforSearch !== ""){
+        let searchedData = getSearched(inputforSearch,result)
+        setFinalRepoData(searchedData)
+      }
+      else setFinalRepoData(result)
         }
         else if (showArchieved){
             const result = repoData.filter((elem) => { 
                 if (elem.fork) return false
                 else return true
              })
-             setFinalRepoData(result)
+             if (inputforSearch !== ""){
+              let searchedData = getSearched(inputforSearch,result)
+              setFinalRepoData(searchedData)
+              }
+              else setFinalRepoData(result)
         }    
         else{
             const result = repoData.filter((elem) => { 
                 if (elem.fork || elem.archived){return false}
                 else {return true}
              })
-             setFinalRepoData(result)
+             if (inputforSearch !== ""){
+                let searchedData = getSearched(inputforSearch,result)
+                setFinalRepoData(searchedData)
+              }
+              else setFinalRepoData(result)
         }
-    }, [showForked,showArchieved])
-    console.log(finalRepoData)
+    }, [showForked,showArchieved,inputforSearch])
   return (
     <>
       <Navbar/>
@@ -58,7 +84,9 @@ const Stats = () => {
                 <button className="w-fit px-3 py-1 border rounded-lg bg-gray-50 hover:bg-gray-100 transition text-xs md:text-sm">Sort by : Update</button>
               </div>
               <div className="second flex flex-col md:flex-row justify-between items-center gap-3 mb-6">
-                <input className='w-full md:w-2/3 text-xs md:text-sm rounded-xl pr-4 py-2 pl-3 bg-gray-100 border border-gray-300 focus:border-blue-400 focus:bg-white transition' type="text" name="username" placeholder='Search repository.. ' />
+                <input onChange={(e) => { 
+                  setInputforSearch(e.currentTarget.value)
+                 }} className='w-full md:w-2/3 text-xs md:text-sm rounded-xl pr-4 py-2 pl-3 bg-gray-100 border border-gray-300 focus:border-blue-400 focus:bg-white transition' type="text" name="username" value={inputforSearch} placeholder='Search repository.. ' />
                 <div className="checkbox flex items-center gap-3">
                   <h5 className="font-semibold text-xs md:text-sm">Include:</h5>
                   <div className='flex items-center gap-2'>

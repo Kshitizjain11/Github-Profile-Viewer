@@ -8,3 +8,7 @@ export const getdev = () => {
     }
     return data
  }
+export const getSearched = (s,arr) => { 
+    const newArr = arr.filter(elem=> elem.name.startsWith(s))
+    return newArr
+ }
