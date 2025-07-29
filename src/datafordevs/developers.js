@@ -9,6 +9,7 @@ export const getdev = () => {
     return data
  }
 export const getSearched = (s,arr) => { 
-    const newArr = arr.filter(elem=> elem.name.startsWith(s))
+    const newArr = arr.filter(elem=> elem.name.toLowerCase().includes(s))
     return newArr
  }
+ 
