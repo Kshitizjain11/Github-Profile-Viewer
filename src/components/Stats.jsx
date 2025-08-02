@@ -3,14 +3,19 @@ import Navbar from './Navbar'
 import Profile from './Profile'
 import { useLocation } from 'react-router-dom'
 import Checkbox from '@mui/material/Checkbox'
-import { getSearched } from '../datafordevs/developers'
+import { getSearched, sorter } from '../datafordevs/developers'
+import SimpleListMenu from './Menubar'
+import { useSort } from '../context/SortContext'
+import { dateFormat } from '../datafordevs/dateFormatting'
 const Stats = () => {
     const [inputforSearch, setInputforSearch] = useState("")
     const [finalRepoData, setFinalRepoData] = useState([])
     const [showForked, setShowForked] = useState(true)
     const [showArchieved, setShowArchieved] = useState(true)
     const location = useLocation()
-    const {data,repoData} = location.state
+    const {data,InitalRepoData} = location.state
+    const {selectedSort,setSelectedSort} = useSort()
+    
     // useEffect(() => {
     //   if (inputforSearch !== ""){
     //     let searchedData = getSearched(inputforSearch,repoData)
@@ -19,13 +24,18 @@ const Stats = () => {
     //   else setFinalRepoData(repoData)
     
     // }, [inputforSearch])   
+
     useEffect(() => {
+      const repoData = sorter(InitalRepoData,selectedSort)
       if (showForked && showArchieved){
         if (inputforSearch !== ""){
         let searchedData = getSearched(inputforSearch,repoData)
         setFinalRepoData(searchedData)
       }
-        else setFinalRepoData(repoData)
+        else {
+          const final = sorter(repoData,selectedSort)
+          console.log(final)
+          setFinalRepoData(repoData)}
         }
       else if(showForked){
         const result = repoData.filter((elem) => { 
@@ -60,7 +70,7 @@ const Stats = () => {
               }
               else setFinalRepoData(result)
         }
-    }, [showForked,showArchieved,inputforSearch])
+    }, [showForked,showArchieved,inputforSearch,selectedSort])
   return (
     <>
       <Navbar/>
@@ -80,12 +90,12 @@ const Stats = () => {
                     <p>{ finalRepoData.length }</p>
                   </div>
                 </div>
-                <button className="w-fit px-3 py-1 border rounded-lg bg-gray-50 hover:bg-gray-100 transition text-xs md:text-sm">Sort by : Update</button>
+                <button className="w-fit flex rounded-lg  hover:bg-gray-100 transition items-center text-xs md:text-sm"> <SimpleListMenu/> </button>
               </div>
               <div className="second flex flex-col md:flex-row justify-between items-center gap-3 mb-6">
                 <input onChange={(e) => { 
                   setInputforSearch(e.currentTarget.value)
-                 }} className='w-full md:w-2/3 text-xs md:text-sm rounded-xl pr-4 py-2 pl-3 bg-gray-100 border border-gray-300 focus:border-blue-400 focus:bg-white transition' type="text" name="username" value={inputforSearch} placeholder='Search repository.. ' />
+                 }} className='w-full md:w-2/3 text-xs md:text-sm rounded-xl px-4 py-2 pl-3 bg-gray-100 border border-gray-300 focus:border-blue-400 focus:bg-white transition' type="text" name="username" value={inputforSearch} placeholder='Search repository.. ' />
                 <div className="checkbox flex items-center gap-3">
                   <h5 className="font-semibold text-xs md:text-sm">Include:</h5>
                   <div className='flex items-center gap-2'>
@@ -109,7 +119,7 @@ const Stats = () => {
                     <p className='text-xs md:text-sm font-medium text-gray-500 break-words'>{elem.description}</p>
                     <div className="flex gap-3 items-center mt-1">
                       <span className='text-xs font-semibold text-blue-600'>{elem.language}</span>
-                      <span className='text-xs text-gray-400'>Updated 1 month ago</span>
+                      <span className='text-xs text-gray-400'>Updated {dateFormat(elem.updated_at)} </span>
                     </div>
                   </div>
                   <div className="right flex flex-col gap-2 min-w-[120px] md:border-l md:pl-4">

@@ -8,7 +8,7 @@ const App = () => {
   const [devsUsername, setDevsUsername] = useState([])
   const [username, setUsername] = useState("")
   const [data, setData] = useState({})
-  const [repoData, setRepoData] = useState({})
+  const [InitalRepoData, setInitialRepoData] = useState({})
   const [message, setMessage] = useState("")
   const navigate = useNavigate()
   
@@ -20,9 +20,9 @@ const App = () => {
         console.log(username)
         try {
           const response = await axios.get(`https://api.github.com/users/${username}`) 
-          const repoData = await axios.get(`https://api.github.com/users/${username}/repos`)
+          const InitalRepoData = await axios.get(`https://api.github.com/users/${username}/repos`)
           setData(response.data)
-          setRepoData(repoData.data)
+          setInitialRepoData(InitalRepoData.data)
           setMessage("Done")
         } catch (error) {
           setMessage("error")
@@ -33,7 +33,7 @@ const App = () => {
     }
  }
  useEffect(() => {
-  if(message === "Done"  ) navigate('/profile',{state: {data,repoData}})
+  if(message === "Done"  ) navigate('/profile',{state: {data,InitalRepoData}})
  
  }, [data])
  useEffect(() => {

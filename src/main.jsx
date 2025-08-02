@@ -4,6 +4,7 @@ import './index.css'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom'
 import App from './App.jsx'
 import Stats from './components/Stats.jsx'
+import { SortProvider } from './context/SortContext.jsx'
 
 
 const router = createBrowserRouter(
@@ -17,6 +18,8 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <SortProvider>
     <RouterProvider router={router}/>
+    </SortProvider>
   </StrictMode>,
 )
