@@ -9,9 +9,29 @@ const Profile = ({data}) => {
         </div> 
         <div className="text flex flex-col">
             <h2 className='text-lg md:text-xl font-semibold' >{data.name}</h2>
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-1 items-center">
             <svg className='w-5' fill="#676d79" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.509 0 12.306c0 5.435 3.438 10.047 8.207 11.673.6.114.818-.267.818-.593 0-.29-.01-1.066-.016-2.091-3.338.742-4.042-1.65-4.042-1.65-.545-1.421-1.332-1.8-1.332-1.8-1.09-.763.082-.748.082-.748 1.204.087 1.838 1.267 1.838 1.267 1.07 1.881 2.808 1.339 3.492 1.022.11-.793.42-1.336.763-1.644-2.664-.31-5.466-1.366-5.466-6.08 0-1.344.468-2.443 1.234-3.301-.124-.312-.535-1.564.118-3.257 0 0 1.008-.33 3.3 1.261A11.23 11.23 0 0112 5.95c1.02.004 2.047.14 3.005.414 2.291-1.592 3.297-1.262 3.297-1.262.655 1.694.242 2.946.12 3.257.767.859 1.233 1.958 1.233 3.3 0 4.73-2.806 5.769-5.479 6.073.431.38.813 1.13.813 2.278 0 1.644-.013 2.972-.013 3.375 0 .33.216.712.825.593C20.566 22.348 24 17.74 24 12.305 24 5.509 18.627 0 12.001 0H12z"></path></svg>
-            <h2 className='text-gray-600 text-xs md:text-sm' >{data.login}</h2>
+            <div className="group relative">
+              <a 
+                href={data.html_url} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-500 inter-font text-xs md:text-sm tracking-tight flex items-center gap-1 transition-all duration-200 hover:bg-[#78797A]/10 px-2 py-1 rounded"
+              >
+                {data.login}
+                <svg 
+                  className='w-3.5 h-3.5 text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200 self-center'
+                  fill="currentColor" 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  viewBox="0 0 16 16"
+                >
+                  <path 
+                    clipRule="evenodd" 
+                    d="M4.87 4.278c0-.317.257-.575.575-.575h5.833a.573.573 0 01.404.166l.003.003.002.002a.575.575 0 01.166.404v5.833a.575.575 0 11-1.15 0V5.666l-6.018 6.019a.575.575 0 01-.813-.813L9.89 4.853H5.445a.575.575 0 01-.575-.575z"
+                  ></path>
+                </svg>
+              </a>
+            </div>
             </div>
         </div>
       </div>
@@ -43,7 +63,27 @@ const Profile = ({data}) => {
         <>
           <div className="repeatable flex justify-between items-center  ">
             <h1 className='text-gray-500 inter-font text-xs md:text-sm tracking-tight' >Website</h1>
-              <p className='text-gray-500 inter-font text-xs md:text-sm w-[40%] break-words tracking-tight ' >{data.blog}</p>
+              <div className="group relative">
+              <a 
+                href={data.blog} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-500 inter-font text-xs md:text-sm tracking-tight flex items-center gap-1 transition-all duration-200 hover:bg-[#78797A]/10 px-2 py-1 rounded"
+              >
+                {data.blog}
+                <svg 
+                  className='w-3.5 h-3.5 text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200 self-center'
+                  fill="currentColor" 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  viewBox="0 0 16 16"
+                >
+                  <path 
+                    clipRule="evenodd" 
+                    d="M4.87 4.278c0-.317.257-.575.575-.575h5.833a.573.573 0 01.404.166l.003.003.002.002a.575.575 0 01.166.404v5.833a.575.575 0 11-1.15 0V5.666l-6.018 6.019a.575.575 0 01-.813-.813L9.89 4.853H5.445a.575.575 0 01-.575-.575z"
+                  ></path>
+                </svg>
+              </a>
+            </div>
           </div>
           <div className="h-0.5  my-5 bg-[#adadb5] "></div>
         </>

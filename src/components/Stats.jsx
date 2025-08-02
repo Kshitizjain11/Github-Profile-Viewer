@@ -115,7 +115,27 @@ const Stats = () => {
               {finalRepoData.map((elem, index) => (
                 <div key={index} className="py-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-5 text-xs md:text-sm">
                   <div className="left flex-1 flex flex-col gap-1">
-                    <h2 className='headingOfRepo text-base md:text-lg font-bold text-gray-800 break-words'>{elem.name}</h2>
+                    <a 
+                      href={elem.html_url} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="group flex items-center gap-2 w-fit rounded-md px-2 py-1 -ml-2 transition-all hover:bg-gray-100"
+                    >
+                      <h2 className='headingOfRepo text-base md:text-lg font-bold text-gray-800 break-words  transition-colors'>
+                        {elem.name}
+                      </h2>
+                      <svg 
+                  className='w-4 h-4 text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200  self-center'
+                  fill="currentColor" 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  viewBox="0 0 16 16"
+                >
+                  <path 
+                    clipRule="evenodd" 
+                    d="M4.87 4.278c0-.317.257-.575.575-.575h5.833a.573.573 0 01.404.166l.003.003.002.002a.575.575 0 01.166.404v5.833a.575.575 0 11-1.15 0V5.666l-6.018 6.019a.575.575 0 01-.813-.813L9.89 4.853H5.445a.575.575 0 01-.575-.575z"
+                  ></path>
+                </svg>
+                    </a>
                     <p className='text-xs md:text-sm font-medium text-gray-500 break-words'>{elem.description}</p>
                     <div className="flex gap-3 items-center mt-1">
                       <span className='text-xs font-semibold text-blue-600'>{elem.language}</span>
