@@ -5,6 +5,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider} f
 import App from './App.jsx'
 import Stats from './components/Stats.jsx'
 import { SortProvider } from './context/SortContext.jsx'
+import NotFound from './components/NotFound.jsx'
 
 
 const router = createBrowserRouter(
@@ -12,6 +13,7 @@ const router = createBrowserRouter(
     <>
     <Route path='/' element= {<App/>}  />
     <Route path='/profile' element={<Stats/>}/>
+    <Route path='/notfound' element={<NotFound/>}/>
     </>
   )
 )

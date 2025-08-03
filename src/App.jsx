@@ -26,6 +26,7 @@ const App = () => {
           setMessage("Done")
         } catch (error) {
           setMessage("error")
+          navigate('/notfound')
         }
     }
     else{

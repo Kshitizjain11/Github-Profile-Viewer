@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import Profile from './Profile'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Checkbox from '@mui/material/Checkbox'
 import { getSearched, sorter } from '../datafordevs/developers'
 import SimpleListMenu from './Menubar'
 import { useSort } from '../context/SortContext'
 import { dateFormat } from '../datafordevs/dateFormatting'
 const Stats = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
     const [inputforSearch, setInputforSearch] = useState("")
     const [finalRepoData, setFinalRepoData] = useState([])
     const [showForked, setShowForked] = useState(true)
     const [showArchieved, setShowArchieved] = useState(true)
-    const location = useLocation()
-    const {data,InitalRepoData} = location.state
+    const {data,InitalRepoData} = location.state || {}
     const {selectedSort,setSelectedSort} = useSort()
     
     // useEffect(() => {
@@ -24,7 +25,15 @@ const Stats = () => {
     //   else setFinalRepoData(repoData)
     
     // }, [inputforSearch])   
+  
+    useEffect(() => {
+    if (!data) {
+      navigate("/notfound");
+    }
+    }, [data]);
+    if (!data) return null;
 
+    
     useEffect(() => {
       const repoData = sorter(InitalRepoData,selectedSort)
       if (showForked && showArchieved){
