@@ -9,6 +9,12 @@
   font-weight: 600;
   font-style: normal;
 }
+.inter-font-light {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 450;
+  font-style: normal;
+}
 .inter-font-bold {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;

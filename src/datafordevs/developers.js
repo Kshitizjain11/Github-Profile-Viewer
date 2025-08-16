@@ -1,6 +1,6 @@
 import { useSort } from "../context/SortContext.jsx";
 
-const devData = ["gaearon","yyx990803","t3dotgg","sindresorhus","ry","Rich-Harris","worrydream","kentcdodds","tj","mislav","torvalds","hadley","JakeWharton","mojombo","Substack","kennethreitz","addyosmani","wesbos","taylorotwell","isaacs","mrdoob","antfu"];
+const devData = ["gaearon","yyx990803","t3dotgg","sindresorhus","ry","Rich-Harris","worrydream","kentcdodds","tj","mislav","torvalds","hadley","JakeWharton","mojombo","twpayne","kennethreitz","addyosmani","wesbos","taylorotwell","isaacs","mrdoob","antfu"];
 
 export const getdev = () => { 
     const data = []
@@ -46,3 +46,20 @@ export const getSearched = (s,arr) => {
     }
   }
 
+export const languageIcons = {
+  JavaScript: "javascript",
+  TypeScript: "typescript",
+  Python: "python",
+  Java: "java",
+  HTML: "html5",     // map HTML -> html5
+  CSS: "css3",       // map CSS -> css3
+  "C++": "cplusplus", // map C++ -> cplusplus
+  "C#": "csharp",    // map C# -> csharp
+  PHP: "php",
+  Go: "go",
+  Ruby: "ruby",
+  Swift: "swift",
+  Kotlin: "kotlin",
+  VimL:"vim",
+  Shell: "powershell"
+};

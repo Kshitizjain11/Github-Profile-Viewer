@@ -139,9 +139,12 @@ const Profile = ({data}) => {
             <h1 className='text-gray-500 inter-font text-xs md:text-sm tracking-tight' >Gists</h1>
             <p className='text-gray-500 inter-font text-xs md:text-sm tracking-tight' > {data.public_gists}  </p>
           </div>
-          <div className="h-0.5  my-5 bg-[#adadb5] "></div>
+          <div className="h-0.5  mt-5 mb-2.5 bg-[#adadb5] "></div>
         </>
       )}
+      <div className="flex items-center mb-2 w-full h-full">
+        <p className='text-gray-500 inter-font-light  text-xs md:text-sm tracking-tight' >{`Github Member since ${new Date(data.created_at).getFullYear()} `}</p>
+      </div>
 
       
     </div>

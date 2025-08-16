@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 import Profile from './Profile'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Checkbox from '@mui/material/Checkbox'
-import { getSearched, sorter } from '../datafordevs/developers'
+import { getSearched, languageIcons, sorter } from '../datafordevs/developers'
 import SimpleListMenu from './Menubar'
 import { useSort } from '../context/SortContext'
 import { dateFormat } from '../datafordevs/dateFormatting'
@@ -146,9 +146,10 @@ const Stats = () => {
                 </svg>
                     </a>
                     <p className='text-xs md:text-sm font-medium text-gray-500 break-words'>{elem.description}</p>
-                    <div className="flex gap-3 items-center mt-1">
+                    <div className="flex gap-2.5 items-center mt-1">
+                      <span>{<img width={17}  height={17} onError={(e)=> (e.currentTarget.style.display = "none")} src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${(languageIcons[elem.language])?languageIcons[elem.language] : elem.language?.toLowerCase()}/${(languageIcons[elem.language])?languageIcons[elem.language] : elem.language?.toLowerCase()}-original.svg`} />}</span>
                       <span className='text-xs font-semibold text-blue-600'>{elem.language}</span>
-                      <span className='text-xs text-gray-400'>Updated {dateFormat(elem.updated_at)} </span>
+                      <span className='text-xs ml-4 text-gray-400'>Updated {dateFormat(elem.updated_at)} </span>
                     </div>
                   </div>
                   <div className="right flex flex-col gap-2 min-w-[120px] md:border-l md:pl-4">
